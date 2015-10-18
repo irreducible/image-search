@@ -63,7 +63,7 @@ public class ImageDisplayActivity extends AppCompatActivity {
                 return true;
             }
         });
-        
+
     }
 
     public void onShareItem(View v) {
