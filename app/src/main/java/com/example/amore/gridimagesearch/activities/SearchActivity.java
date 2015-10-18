@@ -2,6 +2,8 @@ package com.example.amore.gridimagesearch.activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.media.Image;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -22,6 +24,7 @@ import android.widget.Toast;
 import com.etsy.android.grid.StaggeredGridView;
 import com.example.amore.gridimagesearch.adapters.EndlessScrollListener;
 import com.example.amore.gridimagesearch.adapters.ImageResultsAdapter;
+import com.example.amore.gridimagesearch.dialogs.FilterDialog;
 import com.example.amore.gridimagesearch.models.Filter;
 import com.example.amore.gridimagesearch.models.ImageResult;
 import com.example.amore.gridimagesearch.R;
@@ -71,6 +74,7 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     private void setupViews() {
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#34495e")));
         gvResults = (StaggeredGridView) findViewById(R.id.gvResults);
 
         gvResults.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -168,7 +172,7 @@ public class SearchActivity extends AppCompatActivity {
         }
 
         if (filter.filterColor != null) {
-            augUrl += "&imgcolor=" + filter.filterColor;
+            augUrl += "&imgc=" + filter.filterColor;
         }
 
         if (filter.filterType != null) {
