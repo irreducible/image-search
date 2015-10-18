@@ -24,7 +24,6 @@ import android.widget.Toast;
 import com.etsy.android.grid.StaggeredGridView;
 import com.example.amore.gridimagesearch.adapters.EndlessScrollListener;
 import com.example.amore.gridimagesearch.adapters.ImageResultsAdapter;
-import com.example.amore.gridimagesearch.dialogs.FilterDialog;
 import com.example.amore.gridimagesearch.models.Filter;
 import com.example.amore.gridimagesearch.models.ImageResult;
 import com.example.amore.gridimagesearch.R;
