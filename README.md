@@ -16,8 +16,10 @@ Completed user stories:
  * [x] Optional: Use the ActionBar SearchView as the query box instead of an EditText
  * [x] Optional: User can share an image to their friends or email it to themselves
  * [x] Optional: Replace Filter Settings Activity with a lightweight modal overlay
+ * [x] Optional: Improved the user interface and experimented with image assets and styling and coloring
  * [x] Bonus: Used the StaggeredGridView to display improve the grid of image results
  * [x] Bonus: User can zoom or pan images displayed in full-screen detail view
 
 
 Walkthrough of all user stories:
+![image-search](https://cloud.githubusercontent.com/assets/14814640/10569276/a45bc94c-75d8-11e5-9444-15e974f3c8f7.gif)
