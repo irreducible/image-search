@@ -4,29 +4,28 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.media.Image;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.SearchView;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
-import android.widget.EditText;
-import android.widget.GridView;
 import android.widget.Toast;
 
 import com.etsy.android.grid.StaggeredGridView;
+import com.example.amore.gridimagesearch.R;
 import com.example.amore.gridimagesearch.adapters.EndlessScrollListener;
 import com.example.amore.gridimagesearch.adapters.ImageResultsAdapter;
+import com.example.amore.gridimagesearch.dialogs.FilterDialog;
 import com.example.amore.gridimagesearch.models.Filter;
 import com.example.amore.gridimagesearch.models.ImageResult;
-import com.example.amore.gridimagesearch.R;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
@@ -49,7 +48,9 @@ public class SearchActivity extends AppCompatActivity {
     private String searchUrl;
     private int index = 0;
 
-    public Filter filter;
+    public static Filter filter;
+
+    InputMethodManager imm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +71,7 @@ public class SearchActivity extends AppCompatActivity {
                 return true;
             }
         });
+        imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
     }
 
     private void setupViews() {
@@ -79,6 +81,12 @@ public class SearchActivity extends AppCompatActivity {
         gvResults.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (!isNetworkAvailable()) {
+                    Toast.makeText(SearchActivity.this, "Unable to connect to the Internet. " +
+                            "\nPlease try again later.", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
                 Intent intent = new Intent(SearchActivity.this, ImageDisplayActivity.class);
                 ImageResult imageResult = imageResults.get(position);
 
@@ -130,10 +138,11 @@ public class SearchActivity extends AppCompatActivity {
         if (!isNetworkAvailable()) {
             Toast.makeText(this, "Unable to connect to the Internet. " +
                     "\nPlease try again later.", Toast.LENGTH_LONG).show();
+            return;
         }
 
         index = 0;
-        imageResults.clear();
+        aImageResults.clear();
 
         searchUrl = "https://ajax.googleapis.com/ajax/services/search/images?q=" + query + "&v=1.0&rsz=" + numRes;
 
@@ -142,6 +151,8 @@ public class SearchActivity extends AppCompatActivity {
         }
 
         customLoadMoreDataFromApi();
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
     }
 
     private void customLoadMoreDataFromApi() {
@@ -186,8 +197,9 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     public void showFilters(MenuItem item) {
-        Intent intent = new Intent(SearchActivity.this, FilterActivity.class);
-        startActivityForResult(intent, REQUEST_CODE);
+        FragmentManager fm = getSupportFragmentManager();
+        FilterDialog editNameDialog = FilterDialog.newInstance();
+        editNameDialog.show(fm, "fragment_edit_name");
     }
 
     private Boolean isNetworkAvailable() {
@@ -206,4 +218,5 @@ public class SearchActivity extends AppCompatActivity {
 
         }
     }
+
 }

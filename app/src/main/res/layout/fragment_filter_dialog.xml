@@ -2,8 +2,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#2ecc71"
     android:orientation="vertical"
-    tools:context="com.example.amore.gridimagesearch.activities.FilterActivity">
+    tools:context="com.example.amore.gridimagesearch.dialogs.FilterDialog">
 
     <TextView
         android:id="@+id/textView"
@@ -12,9 +13,11 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
+        android:fontFamily="sans-serif-light"
         android:padding="5dp"
         android:text="@string/advanced_search"
         android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#FFF"
         android:textStyle="bold" />
 
     <LinearLayout
@@ -25,15 +28,16 @@
 
         <TextView
             android:id="@+id/tvImageSize"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="match_parent"
             android:text="@string/image_size"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:textColor="#FFF" />
 
         <Spinner
             android:id="@+id/sImageSize"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:textColor="#FFF" />
 
     </LinearLayout>
 
@@ -45,15 +49,16 @@
 
         <TextView
             android:id="@+id/tvImageColor"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="match_parent"
             android:text="@string/color_filter"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:textColor="#FFF" />
 
         <Spinner
             android:id="@+id/sImageColor"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:textColor="#FFF" />
 
     </LinearLayout>
 
@@ -65,45 +70,40 @@
 
         <TextView
             android:id="@+id/tvImageType"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="match_parent"
             android:text="@string/image_type"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:textColor="#FFF" />
 
         <Spinner
             android:id="@+id/sImageType"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:textColor="#FFF" />
 
     </LinearLayout>
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/tvSiteFilter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="5dp">
+        android:padding="5dp"
+        android:text="@string/site_filter"
+        android:textColor="#FFF" />
 
-        <TextView
-            android:id="@+id/tvSiteFilter"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="@string/site_filter"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-
-        <EditText
-            android:id="@+id/etSiteFilter"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-    </LinearLayout>
+    <EditText
+        android:id="@+id/etSiteFilter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#FFF"
+        android:textSize="15dp" />
 
     <Button
+        android:id="@+id/btnSave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/save"
-        android:id="@+id/btnSave"
-        android:onClick="onSave"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:text="@string/save" />
 
 
 </LinearLayout>

@@ -44,10 +44,16 @@ public class ImageDisplayActivity extends AppCompatActivity {
 
             @Override
             public void onSuccess() {
-                if(mAttacher!=null){
+                if (mAttacher != null) {
                     mAttacher.update();
-                }else{
+                } else {
                     mAttacher = new PhotoViewAttacher(ivImageResult);
+                    mAttacher.setOnViewTapListener(new PhotoViewAttacher.OnViewTapListener() {
+                        @Override
+                        public void onViewTap(View view, float v, float v1) {
+                            onShareItem(view);
+                        }
+                    });
                 }
             }
 
@@ -56,13 +62,6 @@ public class ImageDisplayActivity extends AppCompatActivity {
             }
         });
 
-        ivImageResult.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                onShareItem(v);
-                return true;
-            }
-        });
 
     }
 
